@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Calendario</title>
+    <link rel="stylesheet" href="estilos.css">
+
 </head>
 <body>
     <form action="<?= $_SERVER['PHP_SELF'] ?>" method='POST'>
-    <input type="text" name="month" id="month">
-    <input type="text" name="year" id="year">
+    <input type="text" name="month" id="month" placeholder='Mes en español'>
+    <input type="text" name="year" id="year" placeholder='año'>
     <input type="submit" value="enviar">
 
 
@@ -17,9 +19,11 @@
     <?php
     include_once 'Calendario.php';
         if(isset($_POST) && !empty($_POST['month']) && !empty($_POST['year'])){
-            chooseMonth($_POST['month'],$_POST['year'], $MONTHS);
+            //crearCalendario($_POST['month'], $_POST['year'],$MONTHS,$WEEK);
+            $calendario = new Calendario($_POST['month'],$_POST['year']);
+            $calendario->mostrarCalendario();
         }else{
-            echo 'Por favor rellene ambos campos';
+            echo '<p class="advice">Por favor rellene ambos campos</p>';
         }
 
 
